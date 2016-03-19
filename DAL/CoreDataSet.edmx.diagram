@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e1eef016c51f4a66ac9f87b8bb6e2974" Name="Diagram1">
+        <EntityTypeShape EntityType="DAL.Accessright" Width="1.5" PointX="2.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Accessright_Right" Width="1.5" PointX="3.125" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Account" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Account_Information" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Account_Session" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.AccountAccess" Width="1.5" PointX="5.375" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Club" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.GradingTabs" Width="1.5" PointX="8" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Search" Width="1.5" PointX="8.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAL.Wordlist" Width="1.5" PointX="8.75" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="DAL.Accessright__AccountAccess" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.FK__Accessrig__Acces__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.Account__AccountAccess" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.FK__Account_I__Accou__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.FK__Account_S__Accou__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.Club__Tabs" ManuallyRouted="false" />
+        <AssociationConnector Association="DAL.FK__Account__ClubId__5535A963" />
+        <AssociationConnector Association="DAL.FK__Accessrig__ClubI__571DF1D5" />
+        <EntityTypeShape EntityType="DAL.LoginLog" Width="1.5" PointX="3.25" PointY="1" />
+        <AssociationConnector Association="DAL.FK__LoginLog__UserId__0A9D95DB" />
+        <AssociationConnector Association="DAL.FK__LoginLog__ClubId__0B91BA14" />
+        <EntityTypeShape EntityType="DAL.Account_Information_Generic" Width="1.5" PointX="3.75" PointY="11.625" />
+        <EntityTypeShape EntityType="DAL.Account_Information_Generic_Value" Width="1.5" PointX="6" PointY="9.375" />
+        <AssociationConnector Association="DAL.FK__Account_I__Accou__15DA3E5D" />
+        <AssociationConnector Association="DAL.FK__Account_I__Accou__14E61A24" />
+        <EntityTypeShape EntityType="DAL.ClubLinkModule" Width="1.5" PointX="11.625" PointY="7.5" />
+        <EntityTypeShape EntityType="DAL.Module" Width="1.5" PointX="8.375" PointY="12.75" />
+        <EntityTypeShape EntityType="DAL.ModuleLink" Width="1.5" PointX="10.625" PointY="15.125" />
+        <AssociationConnector Association="DAL.FK__ClubLinkM__ClubI__336AA144" />
+        <AssociationConnector Association="DAL.FK__ClubLinkM__Modul__345EC57D" />
+        <AssociationConnector Association="DAL.FK__ModuleLin__Modul__2DB1C7EE" />
+        <AssociationConnector Association="DAL.FK__ModuleLin__Speci__3552E9B6" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
