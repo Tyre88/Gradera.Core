@@ -165,6 +165,7 @@
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Grade.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
+    <Compile Include="Helpers\AppSettingsHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\ExcelHelper.cs" />
     <Compile Include="Helpers\ListExtensions.cs" />
