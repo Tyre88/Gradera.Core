@@ -17,7 +17,6 @@ namespace Gradera.Core.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Club()
         {
-            this.GradingTabs = new HashSet<GradingTabs>();
             this.Account = new HashSet<Account>();
             this.Accessright = new HashSet<Accessright>();
             this.LoginLog = new HashSet<LoginLog>();
@@ -32,8 +31,6 @@ namespace Gradera.Core.DAL
         public string ShortName { get; set; }
         public string Description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GradingTabs> GradingTabs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

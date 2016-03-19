@@ -106,15 +106,6 @@
           <Property Name="ClubId" Type="int" Nullable="false" />
           <Property Name="ModuleId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="GradingTabs">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClubId" Type="int" Nullable="false" />
-          <Property Name="Content" Type="nvarchar(max)" />
-          <Property Name="LastEdited" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="LoginLog">
           <Key>
             <PropertyRef Name="Id" />
@@ -146,25 +137,6 @@
           <Property Name="IsAdminLink" Type="bit" Nullable="false" />
           <Property Name="SpecificClubId" Type="int" />
         </EntityType>
-        <EntityType Name="Search">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="query" Type="nvarchar" MaxLength="150" />
-          <Property Name="hitsTec" Type="int" />
-          <Property Name="hitsWord" Type="int" />
-          <Property Name="ip" Type="nvarchar" MaxLength="50" />
-          <Property Name="date" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Wordlist">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="jpn" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="swe" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <Association Name="Accessright-&gt;AccountAccess">
           <End Role="Accessright" Type="Self.Accessright" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -190,18 +162,6 @@
             </Principal>
             <Dependent Role="AccountAccess">
               <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Club-&gt;Tabs">
-          <End Role="Club" Type="Self.Club" Multiplicity="1" />
-          <End Role="GradingTabs" Type="Self.GradingTabs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Club">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GradingTabs">
-              <PropertyRef Name="ClubId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -379,12 +339,9 @@
           <EntitySet Name="AccountAccess" EntityType="Self.AccountAccess" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="Club" EntityType="Self.Club" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="ClubLinkModule" EntityType="Self.ClubLinkModule" Schema="Vicdude_victor" store:Type="Tables" />
-          <EntitySet Name="GradingTabs" EntityType="Self.GradingTabs" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="LoginLog" EntityType="Self.LoginLog" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="Module" EntityType="Self.Module" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="ModuleLink" EntityType="Self.ModuleLink" Schema="Vicdude_victor" store:Type="Tables" />
-          <EntitySet Name="Search" EntityType="Self.Search" Schema="Vicdude_victor" store:Type="Tables" />
-          <EntitySet Name="Wordlist" EntityType="Self.Wordlist" Schema="Vicdude_victor" store:Type="Tables" />
           <AssociationSet Name="Accessright-&gt;AccountAccess" Association="Self.Accessright-&gt;AccountAccess">
             <End Role="Accessright" EntitySet="Accessright" />
             <End Role="AccountAccess" EntitySet="AccountAccess" />
@@ -392,10 +349,6 @@
           <AssociationSet Name="Account-&gt;AccountAccess" Association="Self.Account-&gt;AccountAccess">
             <End Role="Account" EntitySet="Account" />
             <End Role="AccountAccess" EntitySet="AccountAccess" />
-          </AssociationSet>
-          <AssociationSet Name="Club-&gt;Tabs" Association="Self.Club-&gt;Tabs">
-            <End Role="Club" EntitySet="Club" />
-            <End Role="GradingTabs" EntitySet="GradingTabs" />
           </AssociationSet>
           <AssociationSet Name="FK__Accessrig__Acces__412EB0B6" Association="Self.FK__Accessrig__Acces__412EB0B6">
             <End Role="Accessright" EntitySet="Accessright" />
@@ -540,7 +493,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="GradingTabs" Relationship="Self.Club__Tabs" FromRole="Club" ToRole="GradingTabs" />
           <NavigationProperty Name="Account" Relationship="DAL.FK__Account__ClubId__5535A963" FromRole="Club" ToRole="Account" />
           <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ShortName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -549,35 +501,6 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClubLinkModule" Relationship="DAL.FK__ClubLinkM__ClubI__336AA144" FromRole="Club" ToRole="ClubLinkModule" />
           <NavigationProperty Name="ModuleLink" Relationship="DAL.FK__ModuleLin__Speci__3552E9B6" FromRole="Club" ToRole="ModuleLink" />
-        </EntityType>
-        <EntityType Name="GradingTabs">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClubId" Type="Int32" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LastEdited" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Club" Relationship="Self.Club__Tabs" FromRole="GradingTabs" ToRole="Club" />
-        </EntityType>
-        <EntityType Name="Search">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="query" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="hitsTec" Type="Int32" />
-          <Property Name="hitsWord" Type="Int32" />
-          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Wordlist">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="jpn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="swe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="Accessright__AccountAccess">
           <End Role="Accessright" Type="Self.Accessright" Multiplicity="1" />
@@ -639,18 +562,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Club__Tabs">
-          <End Role="Club" Type="Self.Club" Multiplicity="1" />
-          <End Role="GradingTabs" Type="Self.GradingTabs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Club">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GradingTabs">
-              <PropertyRef Name="ClubId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CoreModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accessright" EntityType="Self.Accessright" />
           <EntitySet Name="Accessright_Right" EntityType="Self.Accessright_Right" />
@@ -659,9 +570,6 @@
           <EntitySet Name="Account_Session" EntityType="Self.Account_Session" />
           <EntitySet Name="AccountAccess" EntityType="Self.AccountAccess" />
           <EntitySet Name="Club" EntityType="Self.Club" />
-          <EntitySet Name="GradingTabs" EntityType="Self.GradingTabs" />
-          <EntitySet Name="Search" EntityType="Self.Search" />
-          <EntitySet Name="Wordlist" EntityType="Self.Wordlist" />
           <AssociationSet Name="Accessright__AccountAccess" Association="Self.Accessright__AccountAccess">
             <End Role="Accessright" EntitySet="Accessright" />
             <End Role="AccountAccess" EntitySet="AccountAccess" />
@@ -681,10 +589,6 @@
           <AssociationSet Name="FK__Account_S__Accou__5165187F" Association="Self.FK__Account_S__Accou__5165187F">
             <End Role="Account" EntitySet="Account" />
             <End Role="Account_Session" EntitySet="Account_Session" />
-          </AssociationSet>
-          <AssociationSet Name="Club__Tabs" Association="Self.Club__Tabs">
-            <End Role="Club" EntitySet="Club" />
-            <End Role="GradingTabs" EntitySet="GradingTabs" />
           </AssociationSet>
           <FunctionImport Name="GetActiveAccountSessions" EntitySet="Account_Session" ReturnType="Collection(DAL.Account_Session)" />
           <AssociationSet Name="FK__Account__ClubId__5535A963" Association="DAL.FK__Account__ClubId__5535A963">
@@ -1017,37 +921,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Settings" ColumnName="Settings" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GradingTabs">
-            <EntityTypeMapping TypeName="DAL.GradingTabs">
-              <MappingFragment StoreEntitySet="GradingTabs">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="LastEdited" ColumnName="LastEdited" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Search">
-            <EntityTypeMapping TypeName="DAL.Search">
-              <MappingFragment StoreEntitySet="Search">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="query" ColumnName="query" />
-                <ScalarProperty Name="hitsTec" ColumnName="hitsTec" />
-                <ScalarProperty Name="hitsWord" ColumnName="hitsWord" />
-                <ScalarProperty Name="ip" ColumnName="ip" />
-                <ScalarProperty Name="date" ColumnName="date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Wordlist">
-            <EntityTypeMapping TypeName="DAL.Wordlist">
-              <MappingFragment StoreEntitySet="Wordlist">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="jpn" ColumnName="jpn" />
-                <ScalarProperty Name="swe" ColumnName="swe" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

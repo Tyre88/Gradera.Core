@@ -34,9 +34,6 @@ namespace Gradera.Core.DAL
         public virtual DbSet<Account_Session> Account_Session { get; set; }
         public virtual DbSet<AccountAccess> AccountAccess { get; set; }
         public virtual DbSet<Club> Club { get; set; }
-        public virtual DbSet<GradingTabs> GradingTabs { get; set; }
-        public virtual DbSet<Search> Search { get; set; }
-        public virtual DbSet<Wordlist> Wordlist { get; set; }
         public virtual DbSet<LoginLog> LoginLog { get; set; }
         public virtual DbSet<Account_Information_Generic> Account_Information_Generic { get; set; }
         public virtual DbSet<Account_Information_Generic_Value> Account_Information_Generic_Value { get; set; }
