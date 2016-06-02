@@ -87,6 +87,8 @@
     <Compile Include="BLL\AccountSessionCache.cs" />
     <Compile Include="BLL\AuthenticateBLL.cs" />
     <Compile Include="BLL\ClubBLL.cs" />
+    <Compile Include="BLL\ContactBLL.cs" />
+    <Compile Include="BLL\GenericFileBLL.cs" />
     <Compile Include="DAL\Accessright.cs">
       <DependentUpon>CoreDataSet.tt</DependentUpon>
     </Compile>
@@ -121,6 +123,10 @@
     <Compile Include="DAL\ClubLinkModule.cs">
       <DependentUpon>CoreDataSet.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Contact.cs">
+      <DependentUpon>CoreDataSet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ContactDAL.cs" />
     <Compile Include="DAL\CoreDataSet.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -136,10 +142,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreDataSet.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DAL\GetActiveAccountSessions_Result.cs">
+    <Compile Include="DAL\GenericFile.cs">
       <DependentUpon>CoreDataSet.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\GradingTabs.cs">
+    <Compile Include="DAL\GenericFileDAL.cs" />
+    <Compile Include="DAL\GetActiveAccountSessions_Result.cs">
       <DependentUpon>CoreDataSet.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\LoginLog.cs">
@@ -151,18 +158,13 @@
     <Compile Include="DAL\ModuleLink.cs">
       <DependentUpon>CoreDataSet.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Search.cs">
-      <DependentUpon>CoreDataSet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Wordlist.cs">
-      <DependentUpon>CoreDataSet.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\AccountSessionEntity.cs" />
     <Compile Include="Entities\EnumKeyValueEntity.cs" />
     <Compile Include="Entities\UserPrincipal.cs" />
     <Compile Include="Enums\AccessType.cs" />
     <Compile Include="Enums\AccessTypeRight.cs" />
     <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\GenericFileType.cs" />
     <Compile Include="Enums\Grade.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
     <Compile Include="Helpers\AppSettingsHelper.cs" />
@@ -202,6 +204,7 @@
       <DependentUpon>CoreDataSet.edmx</DependentUpon>
       <LastGenOutput>CoreDataSet.cs</LastGenOutput>
     </Content>
+    <Content Include="DBScripts\Gradera.Core.Script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

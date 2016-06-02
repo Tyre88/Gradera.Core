@@ -15,6 +15,7 @@ namespace Gradera.Core.Enums
         Competition = 5,
         Forms = 6,
         Techniques = 7,
-        Newsletter = 8
+        Newsletter = 8,
+        Contact = 9
     }
 }

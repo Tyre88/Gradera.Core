@@ -40,6 +40,8 @@ namespace Gradera.Core.DAL
         public virtual DbSet<ClubLinkModule> ClubLinkModule { get; set; }
         public virtual DbSet<Module> Module { get; set; }
         public virtual DbSet<ModuleLink> ModuleLink { get; set; }
+        public virtual DbSet<GenericFile> GenericFile { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
     
         public virtual ObjectResult<Account_Session> GetActiveAccountSessions()
         {

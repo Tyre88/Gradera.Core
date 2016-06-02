@@ -33,6 +33,9 @@
         <AssociationConnector Association="DAL.FK__ClubLinkM__Modul__345EC57D" />
         <AssociationConnector Association="DAL.FK__ModuleLin__Modul__2DB1C7EE" />
         <AssociationConnector Association="DAL.FK__ModuleLin__Speci__3552E9B6" />
+        <EntityTypeShape EntityType="DAL.GenericFile" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DAL.Contact" Width="1.5" PointX="10.375" PointY="0.75" />
+        <AssociationConnector Association="DAL.FK__Contact__ClubId__42ACE4D4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

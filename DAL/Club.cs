@@ -22,6 +22,7 @@ namespace Gradera.Core.DAL
             this.LoginLog = new HashSet<LoginLog>();
             this.ClubLinkModule = new HashSet<ClubLinkModule>();
             this.ModuleLink = new HashSet<ModuleLink>();
+            this.Contact = new HashSet<Contact>();
         }
     
         public int Id { get; set; }
@@ -41,5 +42,7 @@ namespace Gradera.Core.DAL
         public virtual ICollection<ClubLinkModule> ClubLinkModule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ModuleLink> ModuleLink { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contact> Contact { get; set; }
     }
 }

@@ -106,6 +106,31 @@
           <Property Name="ClubId" Type="int" Nullable="false" />
           <Property Name="ModuleId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsUnsubscribed" Type="bit" />
+          <Property Name="UnsubscribeDate" Type="datetime" />
+          <Property Name="ClubId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenericFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileType" Type="int" Nullable="false" />
+          <Property Name="ModuleType" Type="int" Nullable="false" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileExtension" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="LoginLog">
           <Key>
             <PropertyRef Name="Id" />
@@ -275,6 +300,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Contact__ClubId__42ACE4D4">
+          <End Role="Club" Type="Self.Club" Multiplicity="1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__LoginLog__ClubId__0B91BA14">
           <End Role="Club" Type="Self.Club" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -339,6 +376,8 @@
           <EntitySet Name="AccountAccess" EntityType="Self.AccountAccess" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="Club" EntityType="Self.Club" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="ClubLinkModule" EntityType="Self.ClubLinkModule" Schema="Vicdude_victor" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="Vicdude_victor" store:Type="Tables" />
+          <EntitySet Name="GenericFile" EntityType="Self.GenericFile" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="LoginLog" EntityType="Self.LoginLog" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="Module" EntityType="Self.Module" Schema="Vicdude_victor" store:Type="Tables" />
           <EntitySet Name="ModuleLink" EntityType="Self.ModuleLink" Schema="Vicdude_victor" store:Type="Tables" />
@@ -385,6 +424,10 @@
           <AssociationSet Name="FK__ClubLinkM__Modul__345EC57D" Association="Self.FK__ClubLinkM__Modul__345EC57D">
             <End Role="Module" EntitySet="Module" />
             <End Role="ClubLinkModule" EntitySet="ClubLinkModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contact__ClubId__42ACE4D4" Association="Self.FK__Contact__ClubId__42ACE4D4">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
           <AssociationSet Name="FK__LoginLog__ClubId__0B91BA14" Association="Self.FK__LoginLog__ClubId__0B91BA14">
             <End Role="Club" EntitySet="Club" />
@@ -501,6 +544,7 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClubLinkModule" Relationship="DAL.FK__ClubLinkM__ClubI__336AA144" FromRole="Club" ToRole="ClubLinkModule" />
           <NavigationProperty Name="ModuleLink" Relationship="DAL.FK__ModuleLin__Speci__3552E9B6" FromRole="Club" ToRole="ModuleLink" />
+          <NavigationProperty Name="Contact" Relationship="DAL.FK__Contact__ClubId__42ACE4D4" FromRole="Club" ToRole="Contact" />
         </EntityType>
         <Association Name="Accessright__AccountAccess">
           <End Role="Accessright" Type="Self.Accessright" Multiplicity="1" />
@@ -636,6 +680,12 @@
           <AssociationSet Name="FK__ModuleLin__Speci__3552E9B6" Association="DAL.FK__ModuleLin__Speci__3552E9B6">
             <End Role="Club" EntitySet="Club" />
             <End Role="ModuleLink" EntitySet="ModuleLink" />
+          </AssociationSet>
+          <EntitySet Name="GenericFile" EntityType="DAL.GenericFile" />
+          <EntitySet Name="Contact" EntityType="DAL.Contact" />
+          <AssociationSet Name="FK__Contact__ClubId__42ACE4D4" Association="DAL.FK__Contact__ClubId__42ACE4D4">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GetActiveAccountSessions_Result">
@@ -835,6 +885,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GenericFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileType" Type="Int32" Nullable="false" />
+          <Property Name="ModuleType" Type="Int32" Nullable="false" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileExtension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsUnsubscribed" Type="Boolean" />
+          <Property Name="UnsubscribeDate" Type="DateTime" Precision="3" />
+          <Property Name="ClubId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Club" Relationship="DAL.FK__Contact__ClubId__42ACE4D4" FromRole="Contact" ToRole="Club" />
+        </EntityType>
+        <Association Name="FK__Contact__ClubId__42ACE4D4">
+          <End Type="DAL.Club" Role="Club" Multiplicity="1" />
+          <End Type="DAL.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -984,6 +1072,33 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Sref" ColumnName="Sref" />
                 <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenericFile">
+            <EntityTypeMapping TypeName="DAL.GenericFile">
+              <MappingFragment StoreEntitySet="GenericFile">
+                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="ModuleType" ColumnName="ModuleType" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="DAL.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+                <ScalarProperty Name="UnsubscribeDate" ColumnName="UnsubscribeDate" />
+                <ScalarProperty Name="IsUnsubscribed" ColumnName="IsUnsubscribed" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
